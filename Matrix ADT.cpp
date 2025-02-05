@@ -70,8 +70,8 @@ void calc_inverse(Matrix m, Matrix m_inv) {
 
 void print_matrix(string name, Matrix m) {
     cout << "Matrix: " + name;
-    cout << "[" + m.row1col1 + " " + m.row1col2 + "]";
-	cout << "[" + m.row2col1 + " " + m.row2col2 + "]";
+    cout << "[" + to_string(m.row1col1) + " " + to_string(m.row1col2) + "]";
+	cout << "[" + to_string(m.row2col1) + " " + to_string(m.row2col2) + "]";
 }
 
 int main()
