@@ -1,3 +1,2 @@
-Matrix ADT.vcxproj
-Matrix ADT.vcxproj.filters
-Matrix ADT.vcxproj.user
+*
+!Matrix ADT.cpp
