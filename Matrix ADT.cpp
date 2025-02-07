@@ -13,6 +13,8 @@ struct Matrix
 
 void get_matrix(string name, Matrix& m) {
     m.name = name;
+    cout << "Matrix: " << name << endl;
+
     cout << "Enter value for Row 1 Column 1: ";
     cin >> m.row1col1;
 
