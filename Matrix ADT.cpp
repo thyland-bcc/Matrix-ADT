@@ -62,6 +62,8 @@ void calc_prod(const Matrix& m1, const Matrix& m2, Matrix& prod) {
 }
 
 void calc_inverse(Matrix& m, Matrix& m_inv) {
+    float determinant((m.row1col1 * m.row2col2) - (m.row2col1 * m.row1col2));
+    if (determinant == 0) {
         cout << "Matrix is singular, unable to calculate inverse. \n";
         return;
     }
@@ -77,13 +79,12 @@ void print_matrix(string name, Matrix& m) {
 	cout << "[" << m.row2col1 << " " << m.row2col2 << "]" << endl;
 }
 
-int main()
+int main() 
 {
     Matrix m1, m2, sum, diff, k_m1, prod, m1_inv;
     float k;
     int choice = -1;
 
-    choice = -1;
     while (choice !=0 )
     {
         cout << "Matrix Operation Program\n";
@@ -99,49 +100,60 @@ int main()
         
         cout << "Enter your choice: \n";
         cin >> choice;
-        switch(choice)
+
+        switch (choice) 
         {
-        case 1:
-            get_matrix(m1.name, m1);
-            get_matrix(m2.name, m2);
-            cout << "Matrices successfully stored.\n";
-            print_matrix(m1.name, m1);
-            print_matrix(m2.name, m2);
-            break;
-        case 2:
-            get_scalar(k);
-            cout << "Scalar successfully stored: " << k << endl;
-            break;
-        case 3:
-            calc_sum(m1, m2, sum);
-            print_matrix("Sum", sum);
-            break;
-        case 4:
-            calc_diff(m1, m2, diff);
-            print_matrix("Difference", diff);
-            break;
-        case 5:
-            scalar_mult(k, m1, k_m1);
-            print_matrix("Scalar Multiple", k_m1);
-            break;
-        case 6:
-            calc_prod(m1, m2, prod);
-            print_matrix("Product", prod);
-            break;
-        case 7:
-            calc_inverse(m1, m1_inv);
-            print_matrix("Inverse", m1_inv);
-            break;
-        case 8:
-            print_matrix("M1", m1);
-            print_matrix("M2", m2);
-            break;
-        case 0:
-            cout << "Exiting program.";
-            break;
-        default:
-            cout << "Invalid choice, please enter a number from the menu.";
-            break;
+            case 1:
+                get_matrix("m1", m1);
+                get_matrix("m2", m2);
+                cout << "Matricies successfully stored.\n";
+                print_matrix(m1.name, m1);
+                print_matrix(m2.name, m2);
+                break;
+
+            case 2:
+                get_scalar(k);
+                cout << "Scalar successfully stored: " << k << endl;
+                break;
+
+            case 3:
+                calc_sum(m1, m2, sum);
+                print_matrix("Sum", sum);
+                break;
+
+            case 4:
+                calc_diff(m1, m2, diff);
+                print_matrix("Difference", diff);
+                break;
+
+            case 5:
+                scalar_mult(k, m1, k_m1);
+                print_matrix("Scalar Multiple", k_m1);
+                break;
+
+            case 6:
+                calc_prod(m1, m2, prod);
+                print_matrix("Product", prod);
+                break;
+
+            case 7:
+                calc_inverse(m1, m1_inv);
+                print_matrix("Inverse", m1_inv);
+                break;
+
+            case 8:
+                print_matrix("M1", m1);
+                print_matrix("M2", m2);
+                break;
+            
+            case 0:
+                cout << "Exiting program.";
+                break;
+
+            default:
+                cout << "Invalid choice, please enter a number from the menu.\n";
+                break;
         }
     }
+    
 }
