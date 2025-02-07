@@ -47,7 +47,7 @@ void calc_diff(const Matrix& m1, const Matrix& m2, Matrix& diff) {
     diff.row2col2 = m1.row2col2 - m2.row2col2;
 }
 
-void scalar_mult(float& k, const Matrix& m, Matrix& k_m) {
+void scalar_mult(float k, const Matrix& m, Matrix& k_m) {
     k_m.row1col1 = k * m.row1col1;
     k_m.row1col2 = k * m.row1col2;
     k_m.row2col1 = k * m.row2col1;
@@ -61,7 +61,7 @@ void calc_prod(const Matrix& m1, const Matrix& m2, Matrix& prod) {
     prod.row2col2 = ((m1.row2col1 * m2.row1col2) + (m1.row2col2 * m2.row2col2));
 }
 
-void calc_inverse(Matrix& m, Matrix& m_inv) {
+void calc_inverse(const Matrix& m, Matrix& m_inv) {
     float determinant((m.row1col1 * m.row2col2) - (m.row2col1 * m.row1col2));
     if (determinant == 0) {
         cout << "Matrix is singular, unable to calculate inverse. \n";
