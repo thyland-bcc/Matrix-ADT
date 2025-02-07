@@ -2,16 +2,16 @@
 #include <string>
 using namespace std;
 
-struct Matrix
+struct Matrix 
 {
     string name;
-    int row1col1;
-    int row1col2;
-    int row2col1;
-    int row2col2;
+    float row1col1 = 0;
+    float row1col2 = 0;
+    float row2col1 = 0;
+    float row2col2 = 0;
 };
 
-void get_matrix(string& name, Matrix& m) {
+void get_matrix(string name, Matrix& m) {
     m.name = name;
     cout << "Enter value for Row 1 Column 1: ";
     cin >> m.row1col1;
@@ -26,7 +26,7 @@ void get_matrix(string& name, Matrix& m) {
     cin >> m.row2col2;
 }
 
-void get_scalar(int& k) {
+void get_scalar(float& k) {
     cout << "Enter a scalar value: ";
     cin >> k;
 }
@@ -45,24 +45,21 @@ void calc_diff(const Matrix& m1, const Matrix& m2, Matrix& diff) {
     diff.row2col2 = m1.row2col2 - m2.row2col2;
 }
 
-void scalar_mult(int& k, Matrix m, Matrix& k_m) {
+void scalar_mult(float& k, const Matrix& m, Matrix& k_m) {
     k_m.row1col1 = k * m.row1col1;
     k_m.row1col2 = k * m.row1col2;
     k_m.row2col1 = k * m.row2col1;
     k_m.row2col2 = k * m.row2col2;
 }
 
-void calc_prod(Matrix m1, Matrix m2, Matrix& prod) {
+void calc_prod(const Matrix& m1, const Matrix& m2, Matrix& prod) {
     prod.row1col1 = (m1.row1col1 * m2.row1col1) + (m1.row1col2 * m2.row2col1);
     prod.row1col2 = (m1.row1col1 * m2.row1col2) + (m1.row1col2 * m2.row2col2);
     prod.row2col1 = (m1.row2col1 * m2.row1col1) + (m1.row2col2 * m2.row2col1);
     prod.row2col2 = ((m1.row2col1 * m2.row1col2) + (m1.row2col2 * m2.row2col2));
 }
 
-void calc_inverse(Matrix m, Matrix& m_inv) {
-    int determinant((m.row1col1 * m.row2col2) - (m.row2col1 * m.row1col2));
-    if (determinant == 0)
-    {
+void calc_inverse(Matrix& m, Matrix& m_inv) {
         cout << "Matrix is singular, unable to calculate inverse. \n";
         return;
     }
@@ -72,7 +69,7 @@ void calc_inverse(Matrix m, Matrix& m_inv) {
 	m_inv.row2col2 = m.row1col1 / determinant;
 }
 
-void print_matrix(string name, Matrix m) {
+void print_matrix(string name, Matrix& m) {
     cout << "Matrix: " + name << endl;
     cout << "[" << m.row1col1 << " " << m.row1col2 << "]" << endl;
 	cout << "[" << m.row2col1 << " " << m.row2col2 << "]" << endl;
@@ -80,8 +77,9 @@ void print_matrix(string name, Matrix m) {
 
 int main()
 {
-    Matrix m1,m2,sum,diff,k_m1,prod,m1_inv;
-    int k,choice;
+    Matrix m1, m2, sum, diff, k_m1, prod, m1_inv;
+    float k;
+    int choice = -1;
 
     choice = -1;
     while (choice !=0 )
