@@ -26,6 +26,8 @@ void get_matrix(string name, Matrix& m) {
     
     cout << "Enter value for Row 2 Column 2: ";
     cin >> m.row2col2;
+
+    cout << endl;
 }
 
 void get_scalar(float& k) {
@@ -55,18 +57,27 @@ void scalar_mult(float k, const Matrix& m, Matrix& k_m) {
 }
 
 void calc_prod(const Matrix& m1, const Matrix& m2, Matrix& prod) {
-    prod.row1col1 = (m1.row1col1 * m2.row1col1) + (m1.row1col2 * m2.row2col1);
-    prod.row1col2 = (m1.row1col1 * m2.row1col2) + (m1.row1col2 * m2.row2col2);
-    prod.row2col1 = (m1.row2col1 * m2.row1col1) + (m1.row2col2 * m2.row2col1);
-    prod.row2col2 = ((m1.row2col1 * m2.row1col2) + (m1.row2col2 * m2.row2col2));
+    prod.row1col1 = (m1.row1col1 * m2.row1col1) + 
+                    (m1.row1col2 * m2.row2col1);
+
+    prod.row1col2 = (m1.row1col1 * m2.row1col2) + 
+                    (m1.row1col2 * m2.row2col2);
+
+    prod.row2col1 = (m1.row2col1 * m2.row1col1) + 
+                    (m1.row2col2 * m2.row2col1);
+
+    prod.row2col2 = (m1.row2col1 * m2.row1col2) + 
+                    (m1.row2col2 * m2.row2col2);
 }
 
 void calc_inverse(const Matrix& m, Matrix& m_inv) {
     float determinant((m.row1col1 * m.row2col2) - (m.row2col1 * m.row1col2));
+
     if (determinant == 0) {
         cout << "Matrix is singular, unable to calculate inverse. \n";
         return;
     }
+
     m_inv.row1col1 = m.row2col2 / determinant;
 	m_inv.row1col2 = -m.row1col2 / determinant;
 	m_inv.row2col1 = -m.row2col1 / determinant;
@@ -77,6 +88,7 @@ void print_matrix(string name, Matrix& m) {
     cout << "Matrix: " + name << endl;
     cout << "[" << m.row1col1 << " " << m.row1col2 << "]" << endl;
 	cout << "[" << m.row2col1 << " " << m.row2col2 << "]" << endl;
+    cout << endl;
 }
 
 int main() 
@@ -98,15 +110,17 @@ int main()
         cout << "8. Print Matrices\n";
         cout << "0. Exit\n";
         
-        cout << "Enter your choice: \n";
+        cout << "\nEnter your choice: ";
         cin >> choice;
+        cout << endl;
 
         switch (choice) 
         {
             case 1:
                 get_matrix("m1", m1);
                 get_matrix("m2", m2);
-                cout << "Matricies successfully stored.\n";
+                cout << "Matrices successfully stored.\n";
+                cout << endl;
                 print_matrix(m1.name, m1);
                 print_matrix(m2.name, m2);
                 break;
@@ -114,6 +128,7 @@ int main()
             case 2:
                 get_scalar(k);
                 cout << "Scalar successfully stored: " << k << endl;
+                cout << endl;
                 break;
 
             case 3:
@@ -147,13 +162,14 @@ int main()
                 break;
             
             case 0:
-                cout << "Exiting program.";
+                cout << "Exiting program.\n";
+                cout << endl;
                 break;
 
             default:
                 cout << "Invalid choice, please enter a number from the menu.\n";
+                cout << endl;
                 break;
         }
     }
-    
 }
